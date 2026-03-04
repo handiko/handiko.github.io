@@ -4,6 +4,10 @@ This project is an IoT-based Automatic Identification System (AIS) Receiver desi
 
 _**Note:** This project is a personal recreation and simplified duplication of a professional system I developed in a previous role._
 
+<p align="center">
+  <img src="IMG_20260131_113001.jpg" alt="pcb" width="700"/>
+</p>
+
 ## Project Background
 For port authorities and maritime operators, situational awareness is critical for safe navigation. Vessels are equipped with AIS transponders that broadcast real-time data; this project provides the necessary infrastructure to receive those signals and forward them to mapping platforms (like MarineTraffic or APRS.fi) for visual tracking. 
 
@@ -19,10 +23,22 @@ The system is divided into three functional layers to ensure high performance an
 2. **AIS Decoder:** An STM32F4 microcontroller handles the heavy lifting—decoding raw binary data into standard _**!AIVDM**_ frames and outputting them via UART.
 3. **Internet Gateway:** An ESP32 microcontroller receives the serial data and acts as the bridge, pushing the frames to mapping platforms via Wi-Fi.
 
+<p align="center">
+  <img src="1000097096.jpg" alt="device" width="700"/>
+</p>
+
 ## Web Configurer
 The ESP32 hosts a local Web Server, providing an intuitive interface for:
 * **User Parameter Configuration:** Set server credentials and network settings without recompiling code.
 * **OTA Updates:** Wirelessly update the firmware to add features or refine decoding logic.
 
+<p align="center">
+  <img src="webserver.png" alt="webserver" width="700"/>
+</p>
+
 ## Testing Result
-..
+<p align="center">
+  <img src="2.png" alt="google earth" width="700"/>
+  
+  <img src="1.png" alt="openCPN" width="700"/>
+</p>
