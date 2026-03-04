@@ -6,6 +6,12 @@ _This is a simplified personal duplication/re-creation project of my previous jo
 ## Background
 To build situational-awareness and help navigation in the sea, the port authority needs to "know" where the vessels are located. Each vessel should be equipped with an AIS transmitter/transponder. Therefore, the corresponding AIS receiver is needed to receive and to plot the location of the vessels on a map. 
 
+## Technical Challenges
+1. VHF AIS signals are transmitted using GMSK (Gaussian Minimum Shift Keying) modulation. Thus, a deep understanding of how this modulation works is needed to receive the AIS data.
+2. The received AIS data is still in a raw binary stream. An AIS frame decoder should be constructed to decode the data from its raw form into readable data frames.
+3. The data frame should be passed to the server (either marinetraffic, aprs.fi, or other server) to be visually plotted in the map.
+4. Since the AIS frame decoder is quite computationally intensive and an interrupt-rich process, the AIS decoder and the internet gateway should be created on a separate MCU.
+
 ## Architectural Design
 1. **VHF Receiver**: ADF7021 IC to receive VHF AIS signals on 161.975 & 162.025 MHz.
 2. **AIS Decoder**: STM32F4 MCU to decode the raw binary data into an **_!AIVDM_** frame and send it through the serial port.
