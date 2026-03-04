@@ -3,10 +3,6 @@ This project is a budget-friendly **Class-B AIS (Automatic Identification System
 
 _**Note:** This project is a personal recreation and simplified duplication of a professional system I developed in a previous role._
 
-<p align="center">
-  <img src="IMG_20260131_113001.jpg" alt="pcb" width="700"/>
-</p>
-
 ## Project Background
 Small vessels are often "invisible" to larger ships because they lack active tracking equipment. Many operators forgo AIS installation due to high hardware and licensing costs, which significantly increases the risk of collisions. This project provides a low-cost, open-architecture alternative to help small-scale maritime businesses stay visible and safe.
 
@@ -29,10 +25,20 @@ The transmitter is divided into three primary functional blocks:
 3. **VHF RF Power Amplifier (AFT04MS005):**
    * Uses a high-efficiency RF LDMOS to boost the signal to the 2.5W output required for Class-B AIS compliance.
 
+<p align="center">
+  <img src="1.jpg" alt="pcb" width="700"/>
+</p>
+
 ## Configuration & Maintenance
 The ESP32 hosts a built-in Web Server for local management. When "Config Mode" is toggled, users can access a web interface via Wi-Fi to:
 * Input vessel-specific data (MMSI, Vessel Name, Call Sign).
 * Perform Over-the-Air (OTA) firmware updates to keep the device compliant with evolving standards.
 
+<p align="center">
+  <img src="webserver.png" alt="webserver" width="700"/>
+</p>
+
 ## Testing Result
-..
+<p align="center">
+  <img src="test.png" alt="test" width="700"/>
+</p>
