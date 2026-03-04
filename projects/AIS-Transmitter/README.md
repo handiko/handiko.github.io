@@ -1,4 +1,4 @@
-# IoT-Enabled AIS Receiver & Gateway 
+# Low-cost AIS Transmitter for Small Boat 
 An AIS (Automatic Identification System) receiver that passes the data to the data-collecting server. The receiver is based on an ESP32 microcontroller and web-configurable. 
 
 _This is a simplified personal duplication/re-creation project of my previous job._
