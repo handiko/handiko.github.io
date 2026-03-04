@@ -1,24 +1,28 @@
-# IoT-Enabled AIS Receiver & Gateway 
-An AIS (Automatic Identification System) receiver that passes the data to the data-collecting server. The receiver is based on an ESP32 microcontroller and web-configurable. 
+# IoT-Enabled AIS Receiver & Gateway
 
-_This is a simplified personal duplication/re-creation project of my previous job._
+This project is an IoT-based Automatic Identification System (AIS) Receiver designed to capture marine vessel data and relay it to centralized monitoring servers. Built around an ESP32 and an STM32F4, the system features a web-based configuration interface for easy deployment and management.
 
-## Background
-To build situational-awareness and help navigation in the sea, the port authority needs to "know" where the vessels are located. Each vessel should be equipped with an AIS transmitter/transponder. Therefore, the corresponding AIS receiver is needed to receive and to plot the location of the vessels on a map. 
+_**Note:** This project is a personal recreation and simplified duplication of a professional system I developed in a previous role._
+
+## Project Background
+For port authorities and maritime operators, situational awareness is critical for safe navigation. Vessels are equipped with AIS transponders that broadcast real-time data; this project provides the necessary infrastructure to receive those signals and forward them to mapping platforms (like MarineTraffic or APRS.fi) for visual tracking. 
 
 ## Technical Challenges
-1. VHF AIS signals are transmitted using GMSK (Gaussian Minimum Shift Keying) modulation. Thus, a deep understanding of how this modulation works is needed to receive the AIS data.
-2. The received AIS data is still in a raw binary stream. An AIS frame decoder should be constructed to decode the data from its raw form into readable data frames.
-3. The data frame should be passed to the server (either marinetraffic, aprs.fi, or other server) to be visually plotted in the map.
-4. Since the AIS frame decoder is quite computationally intensive and an interrupt-rich process, the AIS decoder and the internet gateway should be created on a separate MCU.
+* **GMSK Demodulation:** AIS signals utilize Gaussian Minimum Shift Keying (GMSK). Extracting data requires a deep understanding of this modulation scheme to ensure signal integrity.
+* **Frame Decoding:** The raw binary stream captured from the radio frequency must be parsed and decoded into standardized, readable data frames.
+* **Data Integration:** Decoded frames must be formatted and transmitted over the internet to third-party servers for map plotting.
+* **Processing Efficiency:** AIS decoding is a computationally intensive, interrupt-heavy process. To ensure stability, the decoding logic is decoupled from the internet gateway functions using a dual-MCU architecture.
 
 ## Architectural Design
-1. **VHF Receiver**: ADF7021 IC to receive VHF AIS signals on 161.975 & 162.025 MHz.
-2. **AIS Decoder**: STM32F4 MCU to decode the raw binary data into an **_!AIVDM_** frame and send it through the serial port.
-3. **Internet Gateway**: ESP32 MCU is used to pass the **_!AIVDM_** frame to either marinetraffic or aprs.fi mapping platform.
+The system is divided into three functional layers to ensure high performance and reliability:
+1. **RF Front-End (VHF Receiver):** Uses the ADF7021 transceiver IC to monitor AIS frequencies at 161.975 MHz and 162.025 MHz.
+2. **AIS Decoder:** An STM32F4 microcontroller handles the heavy lifting—decoding raw binary data into standard _**!AIVDM**_ frames and outputting them via UART.
+3. **Internet Gateway:** An ESP32 microcontroller receives the serial data and acts as the bridge, pushing the frames to mapping platforms via Wi-Fi.
 
 ## Web Configurer
-The parameters are user-configurable using a Web Server hosted directly by the ESP32 MCU. Once the config mode is triggered, it provides a Web interface for configuring user data and updating the firmware via OTA.
+The ESP32 hosts a local Web Server, providing an intuitive interface for:
+* **User Parameter Configuration:** Set server credentials and network settings without recompiling code.
+* **OTA Updates:** Wirelessly update the firmware to add features or refine decoding logic.
 
 ## Testing Result
 ..
