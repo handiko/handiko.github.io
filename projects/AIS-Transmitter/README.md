@@ -1,21 +1,32 @@
-# Low-cost AIS Transmitter for Small Boat 
-A low-cost Class-B AIS transmitter to track small boats to provide situational awareness in a marine environment. The transmitter is based ona  common MCU and other components to ensure supply chain availability.
+# Low-Cost AIS Class-B Transmitter for Small Vessels
+This project is a budget-friendly Class-B AIS (Automatic Identification System) Transmitter designed to provide situational awareness for small boats. By utilizing common, off-the-shelf microcontrollers and RF components, this solution ensures supply chain resilience and affordability for maritime operators who find commercial AIS units cost-prohibitive.
 
 ## Project Background
-Small boats are often "not visible" to the other vessels due to their lack of vessel tracking equipment. They do not install any AIS transmitter because its high price and not economical for their business. Therefore, a low-cost AIS transmitter solution is needed for this necessity.
+Small vessels are often "invisible" to larger ships because they lack active tracking equipment. Many operators forgo AIS installation due to high hardware and licensing costs, which significantly increases the risk of collisions. This project provides a low-cost, open-architecture alternative to help small-scale maritime businesses stay visible and safe.
 
-## Technical Challenges
-* Low-cost: The equipment should be as low-cost as possible while still maintaining the required specifications for the marine environment.
-* Compliance: The transmitter should comply with the AIS protocol standard and national regulations.
-* Self-contained: AIS transmitter, GPS, internal battery, and the solar charger should be contained in the same box.
+## Technical Objectives
+* Cost Efficiency: Engineered to minimize the Bill of Materials (BOM) without sacrificing the ruggedness required for marine environments.
+* Regulatory Compliance: Designed to adhere to the AIS protocol standards and local maritime regulations for signal timing and frequency accuracy.
+* All-in-One Integration: A fully self-contained unit housing the AIS logic, GPS module, internal battery, and solar charging circuitry within a single weather-resistant enclosure.
 
-## Architectural Design
-1. AIS Protocol Processor: An ESP32 is used to read the GPS data and construct the AIS frames.
-2. VHF AIS Transmitter: ADF7021 is used to transmit the data into a VHF GMSK burst.
-3. VHF RF Power Amplifier: Class-B AIS should transmit with an RF power output of 2.5 watts. The AFT04MS005 RF LDMOS is used for this job.
+## System Architecture
+The transmitter is divided into three primary functional blocks:
+1. AIS Protocol Processor (ESP32):
+   * Acts as the system "brain."
+   * Parses real-time position data from the integrated GPS.
+   * Constructs valid AIS data packets (Type 18/24 messages).
 
-## Web Configurer
-The parameters are user-configurable using a Web Server hosted directly by the ESP32 MCU. Once the config mode is triggered, it provides a Web interface for configuring user data and updating the firmware via OTA.
+2. VHF AIS Transceiver (ADF7021):
+   * Synthesizes the VHF carrier signal.
+   * Performs GMSK (Gaussian Minimum Shift Keying) modulation to convert binary packets into RF bursts.
+
+3. VHF RF Power Amplifier (AFT04MS005):
+   * Uses a high-efficiency RF LDMOS to boost the signal to the 2.5W output required for Class-B AIS compliance.
+
+## Configuration & Maintenance
+The ESP32 hosts a built-in Web Server for local management. When "Config Mode" is toggled, users can access a web interface via Wi-Fi to:
+* Input vessel-specific data (MMSI, Vessel Name, Call Sign).
+* Perform Over-the-Air (OTA) firmware updates to keep the device compliant with evolving standards.
 
 ## Testing Result
 ..
