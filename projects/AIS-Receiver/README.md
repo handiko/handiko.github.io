@@ -1,6 +1,7 @@
 # IoT-Enabled AIS Receiver & Gateway 
 An AIS (Automatic Identification System) receiver that passes the data to the data-collecting server. The receiver is based on an ESP32 microcontroller and web-configurable. 
-This is a simplified personal duplication/re-creation project of my previous job.
+
+_This is a simplified personal duplication/re-creation project of my previous job._
 
 ## Background
 To build situational-awareness and help navigation in the sea, the port authority needs to "know" where the vessels are located. Each vessel should be equipped with an AIS transmitter/transponder. Therefore, the corresponding AIS receiver is needed to receive and to plot the location of the vessels on a map. 
