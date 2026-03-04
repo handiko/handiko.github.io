@@ -3,6 +3,10 @@ This project is a budget-friendly **Class-B AIS (Automatic Identification System
 
 _**Note:** This project is a personal recreation and simplified duplication of a professional system I developed in a previous role._
 
+<p align="center">
+  <img src="IMG_20260131_113001.jpg" alt="pcb" width="700"/>
+</p>
+
 ## Project Background
 Small vessels are often "invisible" to larger ships because they lack active tracking equipment. Many operators forgo AIS installation due to high hardware and licensing costs, which significantly increases the risk of collisions. This project provides a low-cost, open-architecture alternative to help small-scale maritime businesses stay visible and safe.
 
